@@ -13,7 +13,14 @@ Josiah Parry is a Research Analyst in the Research Science division at The NPD G
 
 
 
-## Exploratory Data Analysis
+
+
+--------
+
+
+notes 
+
+Exploratory Data Analysis
 
 > 	The EDA approach is precisely that--an approach--not a set of techniques, but an attitude/philosophy about how a data analysis should be carried out. - NIST
 
@@ -36,7 +43,7 @@ Typical tools in the EDA toolkit:
 - outlier exploration
 
 
-## Tobler's First Law of Geography
+Tobler's First Law of Geography
 
 For this talk, I want you to try and relate everything we discuss to night to this quote. 
 
@@ -48,11 +55,7 @@ When one gets a social science degree there are many moments in their education 
 There's a theory of cities that they change like gradients. However, when you're in one spot, most things around it are rather similar. I think of my time in the financial district of boston. There's a starbucks, an au bon pain, and an intelligentsia coffee all within a block or so of eachother. However, a few blocks north you'll find a restaurants, coffeeshops, and bars, on one side of the street, then on the other, a Macys, Urban Outfitter, and other clothing stores. But in between these places the neighborhood felt very similar. As we move along a city, the things near us are all generally very similar, but the further we go we tend to find ourselves in drastically different neighborhoods. Things near eachother are similar, but if we keep a reference point from where we started, we're often likely to find that the further we venture away from our starting point, the more different our environment becomes. 
 
 
-
-
 ESDA is all about trying to identify these spatial clusters where things enar themselves are similar or where things are _not_ like the other things near them. 
-
-s
 
 ---- 
 Notes
