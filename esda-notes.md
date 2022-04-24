@@ -98,6 +98,8 @@ https://www.sciencedirect.com/topics/earth-and-planetary-sciences/exploratory-sp
   - Two primary types of contiguity:
     - Edge (rook)
     - Vertices (queen)
+  - contiguity of the queens gambit
+    - 1. d4 is the queens gambit
 - Understanding Spatial Weights
 - Understanding the spatial lag
   - warning! We're going to get a LITTLE mathy here but i'm sure you all got it 
