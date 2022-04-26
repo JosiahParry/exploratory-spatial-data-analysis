@@ -13,8 +13,12 @@ Josiah Parry is a Research Analyst in the Research Science division at The NPD G
 
 
 
+[Slides are on Google Drive](https://docs.google.com/presentation/d/1X8P7YbqNOdBFVsZUqr4XJa67xnMac224s5TgEYTVHRk/edit?usp=sharing)
+
+Note, presently under construction
 
 
+<!--
 --------
 
 
@@ -57,25 +61,6 @@ There's a theory of cities that they change like gradients. However, when you're
 
 ESDA is all about trying to identify these spatial clusters where things enar themselves are similar or where things are _not_ like the other things near them. 
 
----- 
-Notes
-
-- Toblers First Law 
-- What is Exploratory data analysis, what is objective
-- How is exploratory spatial analysis different 
-- Nature of spatial data
-  - most phenomena occur somewhere on the earth, or in space...
-- The premise of ESDA
- -   rather than compare the part to the whole, compare the part to the parts surrounding it
-- Basics of GIS data: two types
-  -   vector and raster
-  - raster is a grid of cells (pixels) which contain a value for that grid
-  - vector data can be remembered as "points, lines, and polygons" 
-  - vector data is often also referred to as geometry
-- Vector data and simple features 
-  - the basic unit for vector data is the point. 
-  - multiple points are connected to create lines
-  - 4 or more points that close is a polygon
 
 
-(https://onlinelibrary.wiley.com/doi/abs/10.1002/adts.202100486)
+(https://onlinelibrary.wiley.com/doi/abs/10.1002/adts.202100486)-->

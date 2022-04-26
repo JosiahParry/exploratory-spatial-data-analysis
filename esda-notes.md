@@ -92,6 +92,7 @@ https://www.sciencedirect.com/topics/earth-and-planetary-sciences/exploratory-sp
   - techniques:
     - spatial autocorrelation
     - local indicators of spatial association
+- lattice vs point pattern perspective
 - Understanding spatial neighbors
   - Goal: identify the neighbors for each region in our dataset
   - For polygons, neighbors are defined by the other polygons that it touches (or are contiguous with)

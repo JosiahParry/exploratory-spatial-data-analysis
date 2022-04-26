@@ -16,19 +16,26 @@ board <- chess_board %>%
   scale_fill_manual(values = c("white", "grey20")) +
   theme_void() +
   coord_fixed() +
-  theme(legend.position = "none")
+  theme(legend.position = "none") +
+  theme_void()
 
 board
 
-
-
-# contiguities ------------------------------------------------------------
 
 chess_sf <- chess_board %>% 
   st_as_sf(coords = c("x", "y")) %>% 
   st_make_grid(n = 8) %>% 
   st_sf() %>% 
   mutate(color = pull(chess_board, z))
+
+boardsf <- ggplot(chess_sf, aes(fill = color)) + 
+  geom_sf() + 
+  scale_fill_manual(values = c("white", "grey20")) +
+  theme_void() +
+  theme(legend.position = "none")
+
+# contiguities ------------------------------------------------------------
+
 
 # Create chess board neighbors
 chess_nb_q <- poly2nb(chess_sf)
@@ -41,7 +48,7 @@ queen_gg <- ggplot() +
   geom_sf(data = chess_sf, aes(fill = color)) + 
   geom_sf(data = neighbors_tidy, color = "#ffce40") +
   scale_fill_manual(values = c("white", "grey20")) +
-  labs(title = "Queen Contiguities") +
+#  labs(title = "Queen Contiguities") +
   theme_void() +
   theme(legend.position = "none")
 
@@ -50,7 +57,7 @@ rook_gg <- ggplot() +
   geom_sf(data = chess_sf, aes(fill = color)) + 
   geom_sf(data = neighbors_tidy_r, color = "#ffce40") +
   scale_fill_manual(values = c("white", "grey20")) +
-  labs(title = "Rook Contiguities") +
+#  labs(title = "Rook Contiguities") +
   theme_void() +
   theme(legend.position = "none")
 
@@ -60,25 +67,27 @@ rook_gg
 
 # 1. d4
 
-# rook contiguity
+# queen contiguity
 board +
   geom_point(data = slice(chess_board, chess_nb_q[[28]]),
              color= "#ffce40",
-              size = 3) +
+              size = 5) +
   geom_point(data = slice(chess_board, 28), 
              color = "white",
-             size = 3) +
-  labs(title = "Queen's Gambit: Queen contiguity")
+             size = 5) +
+  # labs(title = "Queen's Gambit: Queen contiguity") +
+  theme(legend.position = "none")
+  
 
 # queen contiguity
 board +
   geom_point(data = slice(chess_board, chess_nb_r[[28]]), 
              color= "#ffce40",
-             size = 3) +
+             size = 5) +
   geom_point(data = slice(chess_board, 28),
              color = "white",
-             size = 3) +
-  labs(title = "Queen's Gambit: Rook contiguity")
-
-
+             size = 5) +
+  #labs(title = "Queen's Gambit: Rook contiguity")
+  theme(legend.position = "none")
+  
 
