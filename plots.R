@@ -91,3 +91,108 @@ board +
   theme(legend.position = "none")
   
 
+# Spatial Lag -------------------------------------------------------------
+
+
+chess_nb <- chess_sf |> 
+  mutate(x = 1:64, 
+         nb = st_contiguity(geometry),
+         wt = st_weights(nb),
+         x_lag = st_lag(x, nb, wt))
+
+chess_nb |> 
+  ggplot(aes(fill = x)) + 
+  geom_sf(color = "black", lwd = 0.2) +
+  theme_void() +
+  geom_sf_text(aes(label = x), color = "white") +
+  scale_fill_continuous(limits = c(0, 64))
+
+
+chess_nb |> 
+  ggplot(aes(fill = x_lag)) + 
+  geom_sf(color = "black", lwd = 0.2) +
+  theme_void() +
+  geom_sf_text(aes(label = round(x_lag, 1)), color = "white") +
+  scale_fill_continuous(limits = c(0, 64))
+
+# spatial lag in guerry
+guerry_nb |> 
+  ggplot(aes(fill = crime_pers)) + 
+  geom_sf(color = "black", lwd = 0.2) +
+  theme_void() +
+  scale_fill_continuous(limits = c(range(guerry$crime_pers)))
+
+guerry_nb |> 
+  mutate(crime_lag = st_lag(crime_pers, nb, wt)) |> 
+  ggplot(aes(fill = crime_lag)) + 
+  geom_sf(color = "black", lwd = 0.2) +
+  theme_void() + 
+  scale_fill_continuous(limits = c(range(guerry$crime_pers)))
+
+
+  
+
+# Moran Plot --------------------------------------------------------------
+
+  
+crime_lag <- guerry_nb |> 
+  mutate(crime_lag = st_lag(crime_pers, nb, wt)) 
+
+# basic plot
+crime_lag |> 
+  ggplot(aes(crime_pers, crime_lag)) +
+  geom_point() +
+  geom_vline(aes(xintercept = mean(crime_pers)), lty = 2) +
+  geom_hline(aes(yintercept = mean(crime_lag)), lty = 2) +
+  theme_light()
+
+# categorize the plot
+# helper function
+categorize_lisa <- function(x, x_lag, scale = TRUE) {
+  
+  cats <- character(length(x))
+  
+  if (scale) {
+    x <- scale(x)
+    x_lag <- scale(x_lag)
+    
+    cats[x > 0 & x_lag > 0] <- "HH"
+    cats[x > 0 & x_lag < 0] <- "HL"
+    cats[x < 0 & x_lag < 0] <- "LL"
+    cats[x < 0 & x_lag > 0] <- "LH"
+    
+  }
+  
+  cats[x > mean(x) & x_lag > mean(x_lag)] <- "HH"
+  cats[x > mean(x) & x_lag < mean(x_lag)] <- "HL"
+  cats[x < mean(x) & x_lag < mean(x_lag)] <- "LL"
+  cats[x < mean(x) & x_lag > mean(x_lag)] <- "LH"
+  cats[cats == ""] <- NA
+  cats
+}
+
+ 
+# Moran plot with cluster categories
+crime_lag |> 
+  mutate(categories = categorize_lisa(crime_pers, crime_lag)) |> 
+  ggplot(aes(crime_pers, crime_lag, color = categories)) +
+  geom_point() +
+  geom_vline(aes(xintercept = mean(crime_pers)), lty = 2) +
+  geom_hline(aes(yintercept = mean(crime_lag)), lty = 2) +
+  theme_light()
+
+# moran plot with autocorrelation slope
+crime_lag |> 
+  mutate(categories = categorize_lisa(crime_pers, crime_lag)) |> 
+  ggplot(aes(crime_pers, crime_lag, color = categories)) +
+  geom_point() +
+  geom_vline(aes(xintercept = mean(crime_pers)), lty = 2) +
+  geom_hline(aes(yintercept = mean(crime_lag)), lty = 2) +
+  geom_smooth(method = "lm", color = "grey40") +
+  theme_light()
+
+# Inference ---------------------------------------------------------------
+
+
+
+  

@@ -15,7 +15,7 @@ Josiah Parry is a Research Analyst in the Research Science division at The NPD G
 
 [Slides are on Google Drive](https://docs.google.com/presentation/d/1X8P7YbqNOdBFVsZUqr4XJa67xnMac224s5TgEYTVHRk/edit?usp=sharing)
 
-Note, presently under construction
+Note, presently under construction.
 
 
 <!--

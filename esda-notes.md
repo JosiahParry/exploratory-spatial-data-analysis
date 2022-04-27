@@ -106,7 +106,7 @@ https://www.sciencedirect.com/topics/earth-and-planetary-sciences/exploratory-sp
   - warning! We're going to get a LITTLE mathy here but i'm sure you all got it 
     - only going to be adding, subtracting, and taking averages! 
   - if you're familiar with time-series, the idea is similar
-    - with time-series the lag compares an obverserved value compared to the same observed value at an earlier point in time
+    - with time-series the lag compares an observed value compared to the same observed value at an earlier point in time
   - with spatial analysis, we compare an observed point with the observed point of its neighbors
   - the spatial lag is simply the expected value (average) of a variable in a neighborhood excluding the observed regions value 
   - with the computed spatial lag, we can visually compare an observed regions value to the average value of its neighbors (the spatial lag) using a scatter plot
