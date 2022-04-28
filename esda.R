@@ -81,14 +81,13 @@ gg <- lisa_clusts +
 # visualize with plotly to make it easier to explore and read names
 plotly::ggplotly(gg)
 
+# it looks like the historically minority/ lower income areas have significant L-L clusters
+bos_nb |> 
+  mutate(edu_inc_lc = local_c_perm(list(med_house_income, bach),
+                                   nb, wt, scale = TRUE)) |> 
+  unnest(edu_inc_lc) |> 
+  mutate(cluster = ifelse(p_folded_sim <= 0.01, as.character(cluster), NA)) |> 
+  ggplot(aes(fill = cluster)) +
+  geom_sf()
 
-# We can see that these 
-bv_moran <- bos_nb |> 
-  mutate(bv_moran = local_moran_bv(med_house_income, bach, nb, wt)) |> 
-  unnest(bv_moran)
 
-bv_moran |> 
-  mutate(i = ifelse(Ib <= 0.1, Ib, NA)) |> 
-  ggplot() + 
-  geom_sf(aes(fill = Ib)) +
-  scale_fill_gradient2(na.value = NA)

@@ -14,6 +14,25 @@ library(tidyverse)
 ```
 
 ```{r}
+# spatial lag
+xi <- 100
+xj <- c(5, 40, 100, 35)
+wj <- 1 / length(xj)
+sum(xj * wj)
+
+# Moran's I
+x <- guerry_nb$crime_pers
+nb <- guerry_nb$nb
+wt <- guerry_nb$wt
+global_moran(x, nb, wt)[["I"]]
+
+x_lag <- st_lag(x, nb, wt)
+
+lm(x_lag ~ x)
+
+```
+
+```{r}
 st_contiguity(st_geometry(guerry))
 
 guerry |> 
